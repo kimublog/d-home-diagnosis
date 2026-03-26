@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自宅リフォーム無料診断 | D.ホーム株式会社</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #1a3a5c;
+  --navy-light: #2a5a8c;
+  --navy-dark: #0f2640;
+  --orange: #e87a2d;
+  --orange-light: #f5a623;
+  --white: #ffffff;
+  --gray-50: #f8f9fa;
+  --gray-100: #f0f2f5;
+  --gray-200: #e2e6ea;
+  --gray-300: #cdd3da;
+  --gray-500: #8895a4;
+  --gray-700: #4a5568;
+  --gray-900: #1a202c;
+  --red: #dc3545;
+  --red-bg: #fff5f5;
+  --red-border: #feb2b2;
+  --yellow: #d69e2e;
+  --yellow-bg: #fffff0;
+  --yellow-border: #fefcbf;
+  --green: #38a169;
+  --green-bg: #f0fff4;
+  --green-border: #c6f6d5;
+  --shadow: 0 2px 8px rgba(0,0,0,0.1);
+  --shadow-lg: 0 4px 20px rgba(0,0,0,0.12);
+  --radius: 12px;
+}
+
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", "Noto Sans JP", sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-900);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+button, a {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a { color: inherit; }
+a:visited { color: inherit; }
+
+/* ===== HEADER ===== */
+.header {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+  color: var(--white);
+  padding: 16px 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+.header h1 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.header-sub {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-wrap {
+  background: var(--white);
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.progress-label {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+.progress-bar {
+  height: 8px;
+  background: var(--gray-200);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--orange), var(--orange-light));
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+.step-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+.step-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gray-200);
+  color: var(--gray-500);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.step-dot.active {
+  background: var(--orange);
+  color: var(--white);
+  transform: scale(1.15);
+}
+.step-dot.done {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+/* ===== STEP SCREEN ===== */
+.step-screen { display: none; animation: fadeIn 0.3s ease; }
+.step-screen.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.step-desc {
+  font-size: 14px;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+}
+
+.question-group {
+  margin-bottom: 28px;
+}
+.question-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gray-700);
+  margin-bottom: 12px;
+}
+.question-hint {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-bottom: 12px;
+}
+
+/* Single select buttons */
+.option-btn {
+  display: block;
+  width: 100%;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  background: var(--white);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-size: 16px;
+  color: var(--gray-900);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  line-height: 1.5;
+  -webkit-appearance: none;
+}
+.option-btn:hover { border-color: var(--navy-light); background: #f0f4f8; }
+.option-btn.selected {
+  border-color: var(--navy);
+  background: #e8f0f8;
+  color: var(--navy);
+  font-weight: 600;
+}
+
+/* Multi select checkboxes */
+.check-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  background: var(--white);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-size: 16px;
+  color: var(--gray-900);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  line-height: 1.5;
+  -webkit-appearance: none;
+}
+.check-btn:hover { border-color: var(--navy-light); background: #f0f4f8; }
+.check-btn.selected {
+  border-color: var(--navy);
+  background: #e8f0f8;
+  color: var(--navy);
+  font-weight: 600;
+}
+.check-icon {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--gray-300);
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+.check-btn.selected .check-icon {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+/* NAV Buttons */
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+.btn {
+  flex: 1;
+  padding: 16px 20px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-back {
+  background: var(--gray-200);
+  color: var(--gray-700);
+  flex: 0 0 auto;
+  padding: 16px 24px;
+}
+.btn-back:hover:not(:disabled) { background: var(--gray-300); }
+.btn-next {
+  background: linear-gradient(135deg, var(--orange) 0%, #d06a1e 100%);
+  color: var(--white);
+}
+.btn-next:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(232,122,45,0.4); }
+
+/* ===== RESULT SCREEN ===== */
+.result-screen { display: none; animation: fadeIn 0.5s ease; }
+.result-screen.active { display: block; }
+
+.result-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.result-header h2 {
+  font-size: 22px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.result-date {
+  font-size: 13px;
+  color: var(--gray-500);
+}
+
+/* Diagnosis Level */
+.level-card {
+  padding: 24px;
+  border-radius: var(--radius);
+  margin-bottom: 28px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.level-card.level-1 { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-left: 6px solid var(--green); }
+.level-card.level-2 { background: linear-gradient(135deg, #fff8e1, #ffecb3); border-left: 6px solid var(--yellow); }
+.level-card.level-3 { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-left: 6px solid var(--orange); }
+.level-card.level-4 { background: linear-gradient(135deg, #ffebee, #ffcdd2); border-left: 6px solid var(--red); }
+.level-badge {
+  display: inline-block;
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.level-1 .level-badge { background: var(--green); }
+.level-2 .level-badge { background: var(--yellow); }
+.level-3 .level-badge { background: var(--orange); }
+.level-4 .level-badge { background: var(--red); }
+.level-card p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--gray-700);
+}
+
+/* Section title */
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--orange);
+  display: inline-block;
+}
+
+/* Reform cards */
+.reform-group { margin-bottom: 32px; }
+.reform-group h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  display: inline-block;
+}
+.priority-high h4 { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.priority-mid h4 { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+.priority-low h4 { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+
+.reform-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  border-left: 5px solid transparent;
+}
+.priority-high .reform-card { border-left-color: var(--red); }
+.priority-mid .reform-card { border-left-color: var(--yellow); }
+.priority-low .reform-card { border-left-color: var(--green); }
+
+.reform-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.reform-card-reason {
+  font-size: 13px;
+  color: var(--gray-700);
+  margin-bottom: 8px;
+  line-height: 1.7;
+}
+.reform-card-cost {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+.reform-card-comment {
+  font-size: 13px;
+  color: var(--navy-light);
+  background: var(--gray-50);
+  padding: 10px 14px;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+.reform-card-comment::before {
+  content: "D.ホームより：";
+  font-weight: 700;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Strengths */
+.strengths {
+  margin-bottom: 32px;
+}
+.strength-item {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.strength-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+.strength-item h4 {
+  font-size: 15px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.strength-item p {
+  font-size: 13px;
+  color: var(--gray-700);
+  line-height: 1.6;
+}
+
+/* CTA */
+.cta-section {
+  background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.cta-section h3 {
+  color: var(--white);
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.cta-section p {
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.cta-btn {
+  display: block;
+  width: 100%;
+  padding: 18px 20px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  text-align: center;
+}
+.cta-phone {
+  background: linear-gradient(135deg, var(--orange), #d06a1e);
+  color: var(--white);
+}
+.cta-phone:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(232,122,45,0.5); }
+.cta-phone small { display: block; font-size: 12px; font-weight: 400; margin-top: 4px; opacity: 0.9; }
+.cta-line {
+  background: #06c755;
+  color: var(--white);
+}
+.cta-line:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(6,199,85,0.4); }
+
+.print-btn-wrap { text-align: center; margin-bottom: 32px; }
+.print-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--white);
+  border: 2px solid var(--navy);
+  color: var(--navy);
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+.print-btn:hover { background: var(--navy); color: var(--white); }
+
+/* Restart */
+.restart-wrap { text-align: center; margin-top: 20px; margin-bottom: 40px; }
+.restart-btn {
+  background: none;
+  border: none;
+  color: var(--gray-500);
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+}
+
+/* Footer */
+.footer {
+  background: var(--navy-dark);
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+}
+
+/* No results message */
+.no-issues {
+  background: var(--green-bg);
+  border: 1px solid var(--green-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* ===== PRINT ===== */
+@media print {
+  body { background: #fff; }
+  .header { position: static; background: none; color: #000; box-shadow: none; border-bottom: 2px solid #000; }
+  .header h1 { color: #000; }
+  .header-sub { color: #333; }
+  .progress-wrap, .print-btn-wrap, .restart-wrap, .footer { display: none; }
+  .cta-section { background: none !important; padding: 20px 0; }
+  .cta-section h3 { color: #000; }
+  .cta-section p { color: #333; }
+  .cta-btn { display: none; }
+  .cta-section::after { content: "お問い合わせ：0120-495-559（10:00〜20:00）"; display: block; font-size: 14px; font-weight: 700; color: #000; margin-top: 8px; }
+  .container { max-width: 100%; padding: 0 20px; }
+  .level-card { border: 2px solid #333; background: #f5f5f5 !important; box-shadow: none; }
+  .level-badge { background: #333 !important; }
+  .reform-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+  .strength-item { box-shadow: none; border: 1px solid #ccc; }
+  .strength-icon { background: #333 !important; }
+  .cta-btn { display: none; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .header h1 { font-size: 15px; }
+  .step-title { font-size: 18px; }
+  .container { padding: 16px 12px 32px; }
+  .option-btn, .check-btn { padding: 12px 14px; font-size: 16px; }
+  .btn { padding: 14px 16px; font-size: 16px; }
+  .result-header h2 { font-size: 20px; }
+  .cta-btn { font-size: 15px; padding: 16px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>&#127968; D.ホーム 自宅リフォーム無料診断</h1>
+  <div class="header-sub">神奈川県座間市・相模原エリア 施工実績3,140件</div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap" id="progressWrap">
+  <div class="progress-label" id="progressLabel">STEP 1 / 5</div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
+  <div class="step-dots">
+    <div class="step-dot active" id="dot1">1</div>
+    <div class="step-dot" id="dot2">2</div>
+    <div class="step-dot" id="dot3">3</div>
+    <div class="step-dot" id="dot4">4</div>
+    <div class="step-dot" id="dot5">5</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ===== STEP 1 ===== -->
+  <div class="step-screen active" id="step1">
+    <div class="step-title">STEP 1：建物の基本情報</div>
+    <div class="step-desc">あなたのお住まいについて教えてください</div>
+
+    <div class="question-group">
+      <div class="question-label">建物の種類</div>
+      <button class="option-btn" data-group="buildingType" data-value="detached" onclick="selectSingle(this)">戸建て住宅</button>
+      <button class="option-btn" data-group="buildingType" data-value="apartment" onclick="selectSingle(this)">マンション・アパート</button>
+      <button class="option-btn" data-group="buildingType" data-value="commercial" onclick="selectSingle(this)">店舗・事務所</button>
+    </div>
+
+    <div class="question-group">
+      <div class="question-label">築年数</div>
+      <button class="option-btn" data-group="buildingAge" data-value="under5" onclick="selectSingle(this)">5年未満</button>
+      <button class="option-btn" data-group="buildingAge" data-value="5to10" onclick="selectSingle(this)">5〜10年</button>
+      <button class="option-btn" data-group="buildingAge" data-value="10to20" onclick="selectSingle(this)">10〜20年</button>
+      <button class="option-btn" data-group="buildingAge" data-value="20to30" onclick="selectSingle(this)">20〜30年</button>
+      <button class="option-btn" data-group="buildingAge" data-value="over30" onclick="selectSingle(this)">30年以上</button>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-next" id="next1" disabled onclick="goStep(2)">次へ進む</button>
+    </div>
+  </div>
+
+  <!-- ===== STEP 2 ===== -->
+  <div class="step-screen" id="step2">
+    <div class="step-title">STEP 2：外回りの状態</div>
+    <div class="step-desc">屋根・外壁の状態を教えてください</div>
+
+    <div class="question-group">
+      <div class="question-hint">該当するものをすべて選んでください（複数選択可）</div>
+      <button class="check-btn" data-group="exterior" data-value="crack" onclick="selectMulti(this)"><span class="check-icon"></span>外壁にひびや汚れが目立つ</button>
+      <button class="check-btn" data-group="exterior" data-value="paint" onclick="selectMulti(this)"><span class="check-icon"></span>外壁の塗装が剥がれてきた・色あせた</button>
+      <button class="check-btn" data-group="exterior" data-value="roof" onclick="selectMulti(this)"><span class="check-icon"></span>屋根の瓦・板金がずれている・浮いている</button>
+      <button class="check-btn" data-group="exterior" data-value="rain" onclick="selectMulti(this)"><span class="check-icon"></span>雨漏りがある・雨どいから水が溢れる</button>
+      <button class="check-btn" data-group="exterior" data-value="moss" onclick="selectMulti(this)"><span class="check-icon"></span>コケ・カビが外壁や屋根に発生している</button>
+      <button class="check-btn" data-group="exterior" data-value="none" data-exclusive="true" onclick="selectMulti(this)"><span class="check-icon"></span>特に気になることはない</button>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-back" onclick="goStep(1)">戻る</button>
+      <button class="btn btn-next" id="next2" disabled onclick="goStep(3)">次へ進む</button>
+    </div>
+  </div>
+
+  <!-- ===== STEP 3 ===== -->
+  <div class="step-screen" id="step3">
+    <div class="step-title">STEP 3：水廻りの状態</div>
+    <div class="step-desc">キッチン・お風呂・トイレの状態を教えてください</div>
+
+    <div class="question-group">
+      <div class="question-hint">該当するものをすべて選んでください（複数選択可）</div>
+      <button class="check-btn" data-group="water" data-value="kitchen" onclick="selectMulti(this)"><span class="check-icon"></span>キッチンが古くなって使いにくい</button>
+      <button class="check-btn" data-group="water" data-value="bath" onclick="selectMulti(this)"><span class="check-icon"></span>お風呂が寒い・換気が悪い・カビが気になる</button>
+      <button class="check-btn" data-group="water" data-value="toilet" onclick="selectMulti(this)"><span class="check-icon"></span>トイレが古い・節水したい</button>
+      <button class="check-btn" data-group="water" data-value="pipe" onclick="selectMulti(this)"><span class="check-icon"></span>水道管の水漏れや詰まりがある</button>
+      <button class="check-btn" data-group="water" data-value="washstand" onclick="selectMulti(this)"><span class="check-icon"></span>洗面台が古い・収納が少ない</button>
+      <button class="check-btn" data-group="water" data-value="none" data-exclusive="true" onclick="selectMulti(this)"><span class="check-icon"></span>特に気になることはない</button>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-back" onclick="goStep(2)">戻る</button>
+      <button class="btn btn-next" id="next3" disabled onclick="goStep(4)">次へ進む</button>
+    </div>
+  </div>
+
+  <!-- ===== STEP 4 ===== -->
+  <div class="step-screen" id="step4">
+    <div class="step-title">STEP 4：内装の状態</div>
+    <div class="step-desc">室内の状態を教えてください</div>
+
+    <div class="question-group">
+      <div class="question-hint">該当するものをすべて選んでください（複数選択可）</div>
+      <button class="check-btn" data-group="interior" data-value="wallpaper" onclick="selectMulti(this)"><span class="check-icon"></span>壁紙（クロス）が汚れ・はがれ・変色している</button>
+      <button class="check-btn" data-group="interior" data-value="floor" onclick="selectMulti(this)"><span class="check-icon"></span>床がきしむ・傷んでいる・冷たい</button>
+      <button class="check-btn" data-group="interior" data-value="insulation" onclick="selectMulti(this)"><span class="check-icon"></span>部屋が寒い・暑い（断熱が気になる）</button>
+      <button class="check-btn" data-group="interior" data-value="barrier" onclick="selectMulti(this)"><span class="check-icon"></span>段差があってつまずく・バリアフリーにしたい</button>
+      <button class="check-btn" data-group="interior" data-value="layout" onclick="selectMulti(this)"><span class="check-icon"></span>間取りを変えたい・部屋を広くしたい</button>
+      <button class="check-btn" data-group="interior" data-value="none" data-exclusive="true" onclick="selectMulti(this)"><span class="check-icon"></span>特に気になることはない</button>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-back" onclick="goStep(3)">戻る</button>
+      <button class="btn btn-next" id="next4" disabled onclick="goStep(5)">次へ進む</button>
+    </div>
+  </div>
+
+  <!-- ===== STEP 5 ===== -->
+  <div class="step-screen" id="step5">
+    <div class="step-title">STEP 5：リフォームへの意向</div>
+    <div class="step-desc">リフォームのご予定について教えてください</div>
+
+    <div class="question-group">
+      <div class="question-label">リフォームの時期</div>
+      <button class="option-btn" data-group="timing" data-value="asap" onclick="selectSingle(this)">すぐにでも検討したい</button>
+      <button class="option-btn" data-group="timing" data-value="6months" onclick="selectSingle(this)">半年以内に検討したい</button>
+      <button class="option-btn" data-group="timing" data-value="1year" onclick="selectSingle(this)">1年以内に検討したい</button>
+      <button class="option-btn" data-group="timing" data-value="undecided" onclick="selectSingle(this)">まだ具体的でない</button>
+    </div>
+
+    <div class="question-group">
+      <div class="question-label">重視すること</div>
+      <button class="option-btn" data-group="priority" data-value="quality" onclick="selectSingle(this)">品質・安心感</button>
+      <button class="option-btn" data-group="priority" data-value="cost" onclick="selectSingle(this)">費用を抑えたい</button>
+      <button class="option-btn" data-group="priority" data-value="speed" onclick="selectSingle(this)">スピード・対応の早さ</button>
+      <button class="option-btn" data-group="priority" data-value="person" onclick="selectSingle(this)">担当者との相性</button>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-back" onclick="goStep(4)">戻る</button>
+      <button class="btn btn-next" id="next5" disabled onclick="showResult()">診断結果を見る</button>
+    </div>
+  </div>
+
+  <!-- ===== RESULT ===== -->
+  <div class="result-screen" id="resultScreen">
+    <div class="result-header">
+      <h2>あなたの自宅リフォーム診断結果</h2>
+      <div class="result-date" id="resultDate"></div>
+    </div>
+
+    <!-- Level -->
+    <div id="levelCard"></div>
+
+    <!-- Reform items -->
+    <div id="reformSection"></div>
+
+    <!-- Strengths -->
+    <div class="strengths" id="strengthsSection"></div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h3>まずはお気軽にご相談ください</h3>
+      <p>顧客1,929件・施工3,140件の実績でお応えします</p>
+      <a href="tel:0120495559" class="cta-btn cta-phone">
+        無料点検・お見積りを依頼する<small>&#9742; 0120-495-559（10:00〜20:00）</small>
+      </a>
+      <button class="cta-btn cta-line" onclick="alert('LINE相談機能は準備中です。\nお電話（0120-495-559）にてお問い合わせください。')">LINEで相談する</button>
+    </div>
+
+    <!-- Print -->
+    <div class="print-btn-wrap">
+      <button class="print-btn" onclick="window.print()">&#128424; この診断結果を印刷する</button>
+    </div>
+
+    <!-- Restart -->
+    <div class="restart-wrap">
+      <button class="restart-btn" onclick="restart()">もう一度診断する</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  &copy; D.ホーム株式会社｜神奈川県座間市・相模原エリア<br>
+  フリーダイヤル 0120-495-559｜営業時間 10:00〜20:00（火曜・隔週水曜定休）
+</div>
+
+<script>
+// ===== STATE =====
+const answers = {
+  buildingType: null,
+  buildingAge: null,
+  exterior: [],
+  water: [],
+  interior: [],
+  timing: null,
+  priority: null
+};
+
+let currentStep = 1;
+
+// ===== SINGLE SELECT =====
+function selectSingle(btn) {
+  const group = btn.dataset.group;
+  const value = btn.dataset.value;
+  document.querySelectorAll(`.option-btn[data-group="${group}"]`).forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[group] = value;
+  validateStep(currentStep);
+}
+
+// ===== MULTI SELECT =====
+function selectMulti(btn) {
+  const group = btn.dataset.group;
+  const value = btn.dataset.value;
+  const isExclusive = btn.dataset.exclusive === 'true';
+  const buttons = document.querySelectorAll(`.check-btn[data-group="${group}"]`);
+
+  if (isExclusive) {
+    // 「特に気になることはない」→ 他をすべて解除
+    buttons.forEach(b => {
+      if (b !== btn) { b.classList.remove('selected'); b.querySelector('.check-icon').textContent = ''; }
+    });
+    btn.classList.toggle('selected');
+    btn.querySelector('.check-icon').textContent = btn.classList.contains('selected') ? '✓' : '';
+  } else {
+    // 通常選択 → 排他ボタンを解除
+    buttons.forEach(b => {
+      if (b.dataset.exclusive === 'true') { b.classList.remove('selected'); b.querySelector('.check-icon').textContent = ''; }
+    });
+    btn.classList.toggle('selected');
+    btn.querySelector('.check-icon').textContent = btn.classList.contains('selected') ? '✓' : '';
+  }
+
+  // 選択値を収集
+  answers[group] = [];
+  buttons.forEach(b => {
+    if (b.classList.contains('selected')) answers[group].push(b.dataset.value);
+  });
+  validateStep(currentStep);
+}
+
+// ===== VALIDATION =====
+function validateStep(step) {
+  let valid = false;
+  switch (step) {
+    case 1: valid = answers.buildingType && answers.buildingAge; break;
+    case 2: valid = answers.exterior.length > 0; break;
+    case 3: valid = answers.water.length > 0; break;
+    case 4: valid = answers.interior.length > 0; break;
+    case 5: valid = answers.timing && answers.priority; break;
+  }
+  const btn = document.getElementById('next' + step);
+  if (btn) btn.disabled = !valid;
+}
+
+// ===== NAVIGATION =====
+function goStep(step) {
+  document.querySelectorAll('.step-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + step).classList.add('active');
+  currentStep = step;
+
+  // Progress
+  document.getElementById('progressLabel').textContent = `STEP ${step} / 5`;
+  document.getElementById('progressFill').style.width = (step * 20) + '%';
+  for (let i = 1; i <= 5; i++) {
+    const dot = document.getElementById('dot' + i);
+    dot.className = 'step-dot';
+    if (i < step) dot.classList.add('done');
+    if (i === step) dot.classList.add('active');
+  }
+
+  validateStep(step);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== REFORM DATA =====
+const reformData = {
+  // Exterior
+  crack: {
+    name: 'ひび割れ補修',
+    category: '外壁工事',
+    reason: '外壁のひび割れは防水性能が低下しているサインです。放置すると雨水が浸入し、構造材の腐食につながる可能性があります。',
+    cost: '5〜30万円',
+    comment: '小さなひび割れでもお気軽にご相談ください。部分的な補修にも対応しています。'
+  },
+  paint: {
+    name: '外壁塗装',
+    category: '外壁工事',
+    reason: '塗装の剥がれ・色あせは防水機能が低下しているサインです。放置すると雨水が浸入し、構造材の腐食につながる可能性があります。',
+    cost: '50〜100万円',
+    comment: '自社施工のため中間マージンなし。施工後の保証もお約束します。'
+  },
+  roof: {
+    name: '屋根葺き替え・補修',
+    category: '屋根工事',
+    reason: '瓦や板金のずれ・浮きは、台風や大雨の際に雨漏りの原因になります。早めの補修が建物を長持ちさせます。',
+    cost: '60〜150万円',
+    comment: 'ベテラン職人が屋根の状態を丁寧に点検・施工いたします。'
+  },
+  rain: {
+    name: '雨どい交換・雨漏り修理',
+    category: '屋根工事',
+    reason: '雨漏りや雨どいの不具合は、建物内部へのダメージに直結します。早急な対応が必要です。',
+    cost: '5〜20万円（雨どい）/ 15〜80万円（雨漏り修理）',
+    comment: '雨漏りは原因特定が重要です。経験豊富な職人が確実に修理いたします。'
+  },
+  moss: {
+    name: '屋根塗装・外壁塗装',
+    category: '屋根・外壁工事',
+    reason: 'コケ・カビの発生は塗膜の防水性能が落ちているサインです。放置すると建材の劣化が加速します。',
+    cost: '15〜30万円（屋根）/ 50〜100万円（外壁）',
+    comment: '高圧洗浄と塗装のセットで美観と防水性を同時に回復します。'
+  },
+  // Water
+  kitchen: {
+    name: 'キッチンリフォーム',
+    category: '水廻り内装工事',
+    reason: '古くなったキッチンは使い勝手が悪いだけでなく、水漏れや排水不良のリスクも高まります。',
+    cost: '50〜150万円',
+    comment: 'ショールーム見学から設置まで、担当者が一貫してサポートいたします。'
+  },
+  bath: {
+    name: 'バスルームリフォーム',
+    category: '水廻り内装工事',
+    reason: 'お風呂の寒さやカビは、健康面のリスクや建物への悪影響があります。最新のユニットバスで快適・清潔な浴室に。',
+    cost: '60〜150万円',
+    comment: 'ヒートショック対策にも。ご家族の安全を守るリフォームをご提案します。'
+  },
+  toilet: {
+    name: 'トイレリフォーム',
+    category: '水廻り内装工事',
+    reason: '古いトイレは水道代がかさむだけでなく、衛生面でも気になります。最新の節水トイレで年間数千円の節約に。',
+    cost: '15〜50万円',
+    comment: '小さな工事も大歓迎。トイレ交換は最短1日で完了します。'
+  },
+  pipe: {
+    name: '水道管の修理・交換',
+    category: '水廻り内装工事',
+    reason: '水漏れや詰まりは放置すると床下への漏水や水道代の高騰を招きます。早めの対処が重要です。',
+    cost: '5〜30万円',
+    comment: '緊急の水トラブルにも迅速に対応いたします。'
+  },
+  washstand: {
+    name: '洗面台交換',
+    category: '水廻り内装工事',
+    reason: '古い洗面台は収納不足や水はけの悪さを招きます。最新の洗面台で快適な朝の時間を。',
+    cost: '10〜30万円',
+    comment: 'コンパクトなものから収納たっぷりのものまで、ご要望に合わせてご提案します。'
+  },
+  // Interior
+  wallpaper: {
+    name: 'クロス（壁紙）張り替え',
+    category: 'その他内装工事',
+    reason: '壁紙の汚れ・はがれ・変色は、お部屋の印象を大きく左右します。張り替えで見違えるような空間に。',
+    cost: '3〜15万円（1部屋あたり）',
+    comment: '1部屋から対応可能です。色柄のご相談もお気軽にどうぞ。'
+  },
+  floor: {
+    name: 'フローリング張り替え',
+    category: 'その他内装工事',
+    reason: '床のきしみや傷は、見た目だけでなく下地の劣化の可能性もあります。快適で美しい床に張り替えましょう。',
+    cost: '10〜30万円（1部屋あたり）',
+    comment: '重ね張り工法なら工期も短く、費用も抑えられます。'
+  },
+  insulation: {
+    name: '断熱リフォーム',
+    category: 'その他内装工事',
+    reason: '夏暑く冬寒い住まいは、光熱費がかさむだけでなく健康にも悪影響。断熱リフォームで快適な住環境を。',
+    cost: '20〜100万円',
+    comment: '窓の断熱から壁・床の断熱まで、ご予算に合わせた最適プランをご提案します。'
+  },
+  barrier: {
+    name: '床・バリアフリー対応',
+    category: 'その他内装工事',
+    reason: '段差の解消や手すりの設置は、転倒事故の予防に効果的です。将来を見据えた住まいづくりを。',
+    cost: '20〜80万円',
+    comment: '介護保険を利用したバリアフリー工事のご相談も承ります。'
+  },
+  layout: {
+    name: '間取り変更リフォーム',
+    category: 'その他内装工事',
+    reason: 'ライフスタイルの変化に合わせた間取り変更で、暮らしの満足度が大きく向上します。',
+    cost: '50〜200万円',
+    comment: '構造を見極めた上で、最適なプランをご提案します。自社設計・施工で柔軟に対応。'
+  }
+};
+
+// ===== PRIORITY LOGIC =====
+function getPriority(item, age) {
+  const highAge = ['20to30', 'over30'];
+  const midAge = ['10to20'];
+
+  // 高優先度：雨漏り/水漏れ系 or 築20年以上の外装系
+  const urgentItems = ['rain', 'pipe'];
+  const exteriorItems = ['crack', 'paint', 'roof', 'moss'];
+
+  if (urgentItems.includes(item)) return 'high';
+  if (exteriorItems.includes(item) && highAge.includes(age)) return 'high';
+  if (exteriorItems.includes(item) && midAge.includes(age)) return 'mid';
+  if (exteriorItems.includes(item)) return 'mid';
+
+  // 水廻り
+  const waterItems = ['kitchen', 'bath', 'toilet', 'washstand'];
+  if (waterItems.includes(item) && highAge.includes(age)) return 'high';
+  if (waterItems.includes(item)) return 'mid';
+
+  // 内装
+  if (item === 'barrier') return highAge.includes(age) ? 'high' : 'mid';
+  if (item === 'insulation') return highAge.includes(age) ? 'mid' : 'low';
+  if (['wallpaper', 'floor'].includes(item)) return 'low';
+  if (item === 'layout') return 'low';
+
+  return 'low';
+}
+
+// ===== STRENGTH DATA =====
+const strengthsAll = [
+  { icon: '&#128736;', title: 'ベテラン職人による自社一貫施工', desc: '下請けに丸投げしない自社施工体制。中間マージンがかからず、高品質な仕上がりをお約束します。' },
+  { icon: '&#128170;', title: '小さな工事・部分リフォームもOK', desc: 'ちょっとした修繕から大規模リフォームまで、どんなご要望にもお応えします。' },
+  { icon: '&#129309;', title: 'スタッフ定着率が高い安心感', desc: '担当者が変わらないから、お住まいの状態を継続的に把握。二人三脚でサポートします。' },
+  { icon: '&#128203;', title: '施工後3年〜10年のアフターケア保証', desc: '責任施工だから、施工後のアフターケアも万全。長く安心してお住まいいただけます。' },
+  { icon: '&#11088;', title: '紹介・リピーター多数の信頼実績', desc: '顧客1,929件・施工3,140件。お客様からの紹介やリピートが多いのは信頼の証です。' }
+];
+
+function pickStrengths(answers) {
+  const picked = [];
+  const issues = [...answers.exterior, ...answers.water, ...answers.interior].filter(v => v !== 'none');
+
+  // 常に自社施工
+  picked.push(strengthsAll[0]);
+
+  if (answers.priority === 'quality') {
+    picked.push(strengthsAll[3]); // 保証
+    picked.push(strengthsAll[4]); // 実績
+  } else if (answers.priority === 'cost') {
+    picked.push(strengthsAll[1]); // 小工事OK
+    picked.push(strengthsAll[4]); // 実績
+  } else if (answers.priority === 'person') {
+    picked.push(strengthsAll[2]); // スタッフ定着
+    picked.push(strengthsAll[3]); // 保証
+  } else {
+    // speed or default
+    picked.push(strengthsAll[2]); // スタッフ定着
+    picked.push(strengthsAll[4]); // 実績
+  }
+
+  return picked;
+}
+
+// ===== SHOW RESULT =====
+function showResult() {
+  // Hide steps, show result
+  document.querySelectorAll('.step-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('resultScreen').classList.add('active');
+
+  // Date
+  const now = new Date();
+  document.getElementById('resultDate').textContent =
+    `診断日：${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`;
+
+  // Collect all issues
+  const allIssues = [
+    ...answers.exterior.filter(v => v !== 'none'),
+    ...answers.water.filter(v => v !== 'none'),
+    ...answers.interior.filter(v => v !== 'none')
+  ];
+  const issueCount = allIssues.length;
+  const age = answers.buildingAge;
+  const isOld = ['20to30', 'over30'].includes(age);
+
+  // Determine level
+  let level;
+  if (isOld && issueCount >= 5) level = 4;
+  else if (issueCount >= 3) level = 3;
+  else if (issueCount >= 1) level = 2;
+  else level = 1;
+
+  const levelMessages = {
+    1: { label: '経過観察', text: '現時点では大きな問題はありませんが、定期的な点検をおすすめします。\n小さなうちに対処することでコストを抑えられます。' },
+    2: { label: '早めの検討を', text: '一部の箇所に劣化のサインが見られます。\n放置すると修繕費用が大きくなる可能性があります。\n早めのご相談をおすすめします。' },
+    3: { label: '検討時期です', text: '複数箇所に劣化が見られます。\n外壁・屋根の劣化は雨漏りや構造へのダメージにつながる場合があります。\n無料点検をご活用ください。' },
+    4: { label: '早急な対応を', text: '建物全体のメンテナンス時期を迎えています。\n複数箇所をまとめてリフォームすることでコストを抑えられる場合があります。\nまずは無料点検・お見積りをご利用ください。' }
+  };
+
+  const lm = levelMessages[level];
+  document.getElementById('levelCard').innerHTML = `
+    <div class="level-card level-${level}">
+      <div class="level-badge">${lm.label}</div>
+      <p>${lm.text.replace(/\n/g, '<br>')}</p>
+    </div>
+  `;
+
+  // Reform items by priority
+  const reformSection = document.getElementById('reformSection');
+  if (issueCount === 0) {
+    reformSection.innerHTML = `
+      <div class="section-title">診断結果</div>
+      <div class="no-issues">現時点でリフォームが必要な箇所は見つかりませんでした。<br>定期的な点検でお住まいの状態を確認しましょう。</div>
+    `;
+  } else {
+    const grouped = { high: [], mid: [], low: [] };
+    allIssues.forEach(item => {
+      const priority = getPriority(item, age);
+      if (reformData[item]) {
+        grouped[priority].push({ ...reformData[item], priority });
+      }
+    });
+
+    let html = '<div class="section-title">おすすめリフォーム箇所</div>';
+    const labels = { high: '優先度：高', mid: '優先度：中', low: '優先度：低' };
+    const classes = { high: 'priority-high', mid: 'priority-mid', low: 'priority-low' };
+
+    ['high', 'mid', 'low'].forEach(p => {
+      if (grouped[p].length === 0) return;
+      html += `<div class="reform-group ${classes[p]}"><h4>${labels[p]}</h4>`;
+      grouped[p].forEach(item => {
+        html += `
+          <div class="reform-card">
+            <div class="reform-card-title">${item.name}</div>
+            <div class="reform-card-reason">${item.reason}</div>
+            <div class="reform-card-cost">目安費用：${item.cost}</div>
+            <div class="reform-card-comment">${item.comment}</div>
+          </div>
+        `;
+      });
+      html += '</div>';
+    });
+    reformSection.innerHTML = html;
+  }
+
+  // Strengths
+  const strengths = pickStrengths(answers);
+  let shtml = '<div class="section-title">D.ホームが選ばれる理由</div>';
+  strengths.forEach(s => {
+    shtml += `
+      <div class="strength-item">
+        <div class="strength-icon">${s.icon}</div>
+        <div>
+          <h4>${s.title}</h4>
+          <p>${s.desc}</p>
+        </div>
+      </div>
+    `;
+  });
+  document.getElementById('strengthsSection').innerHTML = shtml;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== RESTART =====
+function restart() {
+  answers.buildingType = null;
+  answers.buildingAge = null;
+  answers.exterior = [];
+  answers.water = [];
+  answers.interior = [];
+  answers.timing = null;
+  answers.priority = null;
+
+  document.querySelectorAll('.option-btn, .check-btn').forEach(b => {
+    b.classList.remove('selected');
+  });
+  document.querySelectorAll('.check-icon').forEach(i => { i.textContent = ''; });
+
+  document.getElementById('resultScreen').classList.remove('active');
+  document.getElementById('progressWrap').style.display = '';
+  currentStep = 1;
+  goStep(1);
+}
+</script>
+
+</body>
+</html>
